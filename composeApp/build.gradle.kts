@@ -45,6 +45,8 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.window.size)
+
+            implementation(libs.core.splashscreen)
         }
     }
 }
