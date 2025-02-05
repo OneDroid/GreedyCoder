@@ -32,6 +32,8 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.ktor.client.android)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -52,6 +54,10 @@ kotlin {
             implementation(libs.vico.compose.m3)
             implementation(libs.vico.multiplatform)
             implementation(libs.bundles.ktor)
+
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
     }
 }
