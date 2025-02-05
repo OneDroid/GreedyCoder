@@ -5,6 +5,12 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
+val CustomDarkGray = Color(0xFF1f1f1e)
+val CustomLightGreen = Color(0xFF1e3c3b)
+val CustomOrange = Color(0xFFe89d63)
+val CustomGreen = Color(0xFF77dc87)
+val CustomCyan = Color(0xFF6ac9da)
+
 val primaryLight = Color(0xFF004ACA)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFF0260FE)

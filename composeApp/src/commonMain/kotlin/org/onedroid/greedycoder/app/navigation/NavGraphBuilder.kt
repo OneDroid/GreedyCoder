@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import org.onedroid.greedycoder.app.presentation.profile.ProfileScreenRoot
 
 fun NavGraphBuilder.navGraphBuilder(
     rootNavController: NavController,
@@ -19,7 +20,9 @@ fun NavGraphBuilder.navGraphBuilder(
     }
 
     composable<Route.Profile> {
-        Text(text = "Profile")
+        ProfileScreenRoot(
+            innerPadding = innerPadding
+        )
     }
 
 }

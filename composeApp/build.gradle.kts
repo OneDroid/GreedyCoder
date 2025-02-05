@@ -47,6 +47,9 @@ kotlin {
             implementation(libs.window.size)
 
             implementation(libs.core.splashscreen)
+
+            implementation(libs.vico.compose.m3)
+            implementation(libs.vico.multiplatform)
         }
     }
 }

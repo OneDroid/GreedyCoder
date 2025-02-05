@@ -8,7 +8,7 @@ import org.onedroid.greedycoder.core.utils.Theme
 @Composable
 fun App() {
     AppTheme(
-        appTheme = Theme.LIGHT_MODE.name
+        appTheme = Theme.DARK_MODE.name
     ) {
         NavigationScreenRoot()
     }
