@@ -34,3 +34,4 @@ google-services.json
 
 # Kotlin
 .kotlin
+composeApp/src/commonMain/kotlin/org/onedroid/greedycoder/core/utils/ApiConfig.kt
