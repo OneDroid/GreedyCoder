@@ -30,6 +30,7 @@ kotlin {
         
         androidMain.dependencies {
             implementation(compose.preview)
+            implementation(libs.ktor.client.android)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
@@ -50,6 +51,7 @@ kotlin {
 
             implementation(libs.vico.compose.m3)
             implementation(libs.vico.multiplatform)
+            implementation(libs.bundles.ktor)
         }
     }
 }
