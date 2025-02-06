@@ -1,6 +1,10 @@
-package org.onedroid.greedycoder.app.navigation.components
+package org.onedroid.greedycoder.core.components
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -8,6 +12,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -85,6 +91,7 @@ private fun EmbeddedSearchBarInputField(
     onBack: () -> Unit,
     focusRequester: FocusRequester
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
     TextField(
         modifier = Modifier
             .padding(horizontal = 4.dp)
@@ -129,15 +136,30 @@ private fun EmbeddedSearchBarInputField(
         ),
         trailingIcon = {
             AnimatedVisibility(
-                visible = query.isNotBlank()
+                visible = query.isNotBlank(),
+                enter = fadeIn(animationSpec = tween(durationMillis = 300)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 300))
             ) {
-                IconButton(
-                    onClick = { onQueryChange("") },
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = stringResource(Res.string.clear_data),
-                    )
+                Row {
+                    IconButton(
+                        onClick = {
+                            onQueryChange("")
+                            keyboardController?.show()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(Res.string.clear_data),
+                        )
+                    }
+                    IconButton(
+                        onClick = { onSearch() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = stringResource(Res.string.search),
+                        )
+                    }
                 }
             }
         }

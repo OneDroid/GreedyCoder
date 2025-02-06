@@ -11,9 +11,17 @@ import org.onedroid.greedycoder.core.network.map
 class CFRepositoryImpl(
     private val remoteDataSource: CFRemoteDataSource
 ) : CFRepository {
-    override suspend fun searchCFUser(handel: String): Result<CFUser, DataError.Remote> {
-        return remoteDataSource.searchUser(handel).map { dto ->
-            dto.user.toCFUser()
+    override suspend fun searchCFUser(handle: String): Result<CFUser, DataError.Remote> {
+        return when (val result = remoteDataSource.searchUser(handle)) {
+            is Result.Success -> {
+                val users = result.data.users
+                if (users.isNotEmpty()) {
+                    Result.Success(users[0].toCFUser())
+                } else {
+                    Result.Error(DataError.Remote.NOT_FOUND)
+                }
+            }
+            is Result.Error -> result
         }
     }
 }
