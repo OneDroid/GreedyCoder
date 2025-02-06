@@ -6,6 +6,6 @@ import org.onedroid.greedycoder.core.network.Result
 
 interface CFRemoteDataSource {
     suspend fun searchUser(
-        handel: String
+        handle: String
     ): Result<CFSearchDto, DataError.Remote>
 }

@@ -20,7 +20,7 @@ kotlinx-serialization = "1.7.3"
 window-size = "1.7.3"
 core-splashscreen = "1.0.1"
 vico = "2.1.0-alpha.3"
-ktor = "3.0.0"
+ktor = "3.0.3"
 koin = "4.0.0"
 
 [libraries]
@@ -47,6 +47,7 @@ vico-multiplatform = { group = "com.patrykandpatrick.vico", name = "multiplatfor
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }

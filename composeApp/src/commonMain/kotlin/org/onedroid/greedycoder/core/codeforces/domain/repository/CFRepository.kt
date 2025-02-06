@@ -5,5 +5,5 @@ import org.onedroid.greedycoder.core.network.DataError
 import org.onedroid.greedycoder.core.network.Result
 
 interface CFRepository {
-    suspend fun searchCFUser(handel: String): Result<CFUser, DataError.Remote>
+    suspend fun searchCFUser(handle: String): Result<CFUser, DataError.Remote>
 }

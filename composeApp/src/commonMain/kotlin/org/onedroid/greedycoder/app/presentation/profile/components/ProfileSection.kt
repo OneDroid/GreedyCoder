@@ -32,7 +32,10 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ProfileSection(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    handel: String,
+    rank: String,
+    avatar: String,
 ) {
     Card(
         modifier = modifier.fillMaxWidth().padding(top = 4.dp),
@@ -78,11 +81,11 @@ fun ProfileSection(
                     verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
                     Text(
-                        text = "tawhidmonowar",
+                        text = handel,
                         style = MaterialTheme.typography.titleMedium
                     )
                     Text(
-                        text = "newbie",
+                        text = rank,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

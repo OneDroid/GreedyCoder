@@ -13,13 +13,13 @@ class CFRemoteDataSourceImpl(
     private val httpClient: HttpClient
 ) : CFRemoteDataSource {
     override suspend fun searchUser(
-        handel: String
+        handle: String
     ): Result<CFSearchDto, DataError.Remote> {
         return safeCall {
             httpClient.get(
                 urlString = "${CODEFORCES_BASE_URL}/user.info"
             ) {
-                parameter("handle", handel)
+                parameter("handles", handle)
             }
         }
     }
