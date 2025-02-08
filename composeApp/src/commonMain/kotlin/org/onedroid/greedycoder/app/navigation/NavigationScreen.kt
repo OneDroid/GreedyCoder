@@ -20,10 +20,12 @@ import androidx.navigation.compose.rememberNavController
 import org.onedroid.greedycoder.app.navigation.components.CompactNavigationBar
 import org.onedroid.greedycoder.app.navigation.components.NavigationItem
 import org.onedroid.greedycoder.app.navigation.components.navigationItemsLists
+import org.onedroid.greedycoder.app.presentation.settings.SettingViewModel
 
 @Composable
-fun NavigationScreenRoot() {
-
+fun NavigationScreenRoot(
+    settingViewModel: SettingViewModel
+) {
     val navigationItems = navigationItemsLists
     val rootNavController = rememberNavController()
     val rootNavBackStackEntry by rootNavController.currentBackStackEntryAsState()
@@ -50,6 +52,7 @@ fun NavigationScreenRoot() {
 
     NavigationScreen(
         rootNavController = rootNavController,
+        settingViewModel = settingViewModel,
         currentRoute = currentRoute,
         navigationItems = navigationItems,
         isNavigationBarsVisible = isNavigationBarsVisible,
@@ -62,6 +65,7 @@ fun NavigationScreenRoot() {
 private fun NavigationScreen(
     modifier: Modifier = Modifier,
     rootNavController: NavHostController,
+    settingViewModel: SettingViewModel,
     currentRoute: Route?,
     navigationItems: List<NavigationItem>,
     isNavigationBarsVisible: Boolean,
@@ -98,6 +102,7 @@ private fun NavigationScreen(
         ) {
             navGraphBuilder(
                 rootNavController = rootNavController,
+                settingViewModel = settingViewModel,
                 innerPadding = innerPadding
             )
         }
