@@ -9,36 +9,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import greedycoder.composeapp.generated.resources.Res
 import greedycoder.composeapp.generated.resources.error_not_found
-import greedycoder.composeapp.generated.resources.search
-import greedycoder.composeapp.generated.resources.setting
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.onedroid.greedycoder.app.presentation.profile.components.ContestRankingLineChart
@@ -46,6 +34,7 @@ import org.onedroid.greedycoder.app.presentation.profile.components.ProblemRatin
 import org.onedroid.greedycoder.app.presentation.profile.components.ProfileSection
 import org.onedroid.greedycoder.app.presentation.profile.components.StatsCard
 import org.onedroid.greedycoder.core.codeforces.domain.entity.CFUser
+import org.onedroid.greedycoder.core.components.CustomTopAppBar
 import org.onedroid.greedycoder.core.components.EmbeddedSearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,33 +65,13 @@ fun ProfileScreenRoot(
                 .fillMaxSize()
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = "Greedy Coder",
-                            style = TextStyle(
-                                fontSize = 20.sp
-                            )
-                        )
+                CustomTopAppBar(
+                    title = "Profile",
+                    onSettingClick = {
+
                     },
-                    actions = {
-                        IconButton(onClick = {
-                            viewModel.onAction(ProfileAction.OnSearchActiveClick)
-                        }) {
-                            Icon(
-                                imageVector = Icons.Outlined.Search,
-                                contentDescription = stringResource(Res.string.search),
-                            )
-                        }
-                        IconButton(onClick = {
-
-                        }) {
-                            Icon(
-                                imageVector = Icons.Outlined.Settings,
-                                contentDescription = stringResource(Res.string.setting),
-                            )
-                        }
-
+                    onSearchClick = {
+                        viewModel.onAction(ProfileAction.OnSearchActiveClick)
                     },
                     scrollBehavior = scrollBehavior
                 )

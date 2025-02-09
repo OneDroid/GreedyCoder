@@ -5,6 +5,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import org.onedroid.greedycoder.app.presentation.home.HomeViewModel
 import org.onedroid.greedycoder.app.presentation.profile.ProfileViewModel
 import org.onedroid.greedycoder.app.presentation.settings.SettingViewModel
 import org.onedroid.greedycoder.core.codeforces.data.network.CFRemoteDataSource
@@ -26,4 +27,6 @@ val sharedModule = module {
 
     viewModelOf(::SettingViewModel)
     singleOf(::AppPreferences)
+
+    viewModelOf(::HomeViewModel)
 }
