@@ -1,6 +1,8 @@
 package org.onedroid.greedycoder.core.codeforces.data.mappers
 
+import org.onedroid.greedycoder.core.codeforces.data.dto.CFContestDto
 import org.onedroid.greedycoder.core.codeforces.data.dto.CFUserDto
+import org.onedroid.greedycoder.core.codeforces.domain.entity.CFContest
 import org.onedroid.greedycoder.core.codeforces.domain.entity.CFUser
 
 fun CFUserDto.toCFUser(): CFUser {
@@ -21,5 +23,17 @@ fun CFUserDto.toCFUser(): CFUser {
         contribution = contribution,
         lastOnlineTimeSeconds = lastOnlineTimeSeconds,
         registrationTimeSeconds = registrationTimeSeconds
+    )
+}
+
+fun CFContestDto.toCFContest(): CFContest {
+    return CFContest(
+        id = id,
+        name = name,
+        type = type,
+        phase = phase,
+        durationSeconds = durationSeconds,
+        startTimeSeconds = startTimeSeconds,
+        relativeTimeSeconds = relativeTimeSeconds
     )
 }

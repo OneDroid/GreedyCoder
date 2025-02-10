@@ -29,6 +29,8 @@ fun ContestHorizontalPager(
     onAction: (HomeAction) -> Unit,
     state: HomeState
 ) {
+    val completedCFContests = state.cfContests.filter { it.phase == "FINISHED" }
+    val upComingCFContests = state.cfContests.filter { it.phase == "BEFORE" }
     val pagerState = rememberPagerState { 2 }
     LaunchedEffect(state.selectedTabIndex) {
         pagerState.animateScrollToPage(state.selectedTabIndex)
@@ -118,11 +120,15 @@ fun ContestHorizontalPager(
         ) { pageIndex ->
             when (pageIndex) {
                 0 -> {
-                    UpComingContestList()
+                    ContestList(
+                        cfContests = upComingCFContests
+                    )
                 }
 
                 1 -> {
-                    Text(text = "Completed")
+                    ContestList(
+                        cfContests = completedCFContests
+                    )
                 }
             }
         }

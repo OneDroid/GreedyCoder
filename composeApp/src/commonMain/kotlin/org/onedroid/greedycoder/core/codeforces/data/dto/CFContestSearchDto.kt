@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CFSearchDto(
-    @SerialName("result") val users: List<CFUserDto>
+data class CFContestSearchDto(
+    @SerialName("result") val contests: List<CFContestDto>
 )
