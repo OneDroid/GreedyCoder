@@ -1,12 +1,12 @@
 package org.onedroid.greedycoder.app.presentation.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,12 +19,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.onedroid.greedycoder.app.presentation.home.HomeAction
 import org.onedroid.greedycoder.app.presentation.home.HomeState
-import org.onedroid.greedycoder.core.theme.extraSmall
-import org.onedroid.greedycoder.core.theme.small
 
 @Composable
 fun ContestHorizontalPager(
@@ -39,13 +37,18 @@ fun ContestHorizontalPager(
         onAction(HomeAction.OnTabSelected(pagerState.currentPage))
     }
     Column(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TabRow(
             modifier = Modifier
-                .padding(horizontal = extraSmall)
-                .clip(RoundedCornerShape(8.dp))
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .border(
+                    1.dp,
+                    MaterialTheme.colorScheme.outline.copy(alpha = 0.1f),
+                    RoundedCornerShape(12.dp)
+                )
                 .fillMaxWidth(),
             selectedTabIndex = state.selectedTabIndex,
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -74,7 +77,8 @@ fun ContestHorizontalPager(
                             .align(Alignment.Center)
                             .padding(vertical = 12.dp),
                         text = "Upcoming",
-                        style = MaterialTheme.typography.labelLarge
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
@@ -101,27 +105,24 @@ fun ContestHorizontalPager(
                             .align(Alignment.Center)
                             .padding(vertical = 12.dp),
                         text = "Completed",
-                        style = MaterialTheme.typography.labelLarge
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
         }
 
         HorizontalPager(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.padding().fillMaxWidth(),
             state = pagerState
         ) { pageIndex ->
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                when (pageIndex) {
-                    0 -> {
-                        Text(text = "Upcoming")
-                    }
-                    1 -> {
-                        Text(text = "Completed")
-                    }
+            when (pageIndex) {
+                0 -> {
+                    UpComingContestList()
+                }
+
+                1 -> {
+                    Text(text = "Completed")
                 }
             }
         }

@@ -32,7 +32,7 @@ fun HomeScreenRoot(
     innerPadding: PaddingValues,
     onSettingClick: () -> Unit = {},
 ) {
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val state by viewModel.state.collectAsStateWithLifecycle()
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -69,8 +69,7 @@ fun HomeScreenRoot(
             HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(innerPadding)
-                    .verticalScroll(rememberScrollState()),
+                    .padding(innerPadding),
                 state = state,
                 onAction = { action ->
                     viewModel.onAction(action)
@@ -87,12 +86,11 @@ private fun HomeScreen(
     onAction: (HomeAction) -> Unit = {}
 ) {
     Column(modifier = modifier) {
-        UpcomingContestCardMostRecent()
         ContestHorizontalPager(
             onAction = {
                 onAction(it)
             },
-            state = state
+            state = state,
         )
     }
 }
