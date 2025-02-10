@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.onedroid.greedycoder.core.codeforces.domain.usecase.SearchUserUseCase
+import org.onedroid.greedycoder.core.codeforces.domain.usecase.SearchCFUserUseCase
 import org.onedroid.greedycoder.core.network.onError
 import org.onedroid.greedycoder.core.network.onSuccess
 import org.onedroid.greedycoder.core.network.toUiText
 
 class ProfileViewModel(
-    private val searchUserUseCase: SearchUserUseCase
+    private val searchUserUseCase: SearchCFUserUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state.onStart {}.stateIn(

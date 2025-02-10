@@ -12,7 +12,8 @@ import org.onedroid.greedycoder.core.codeforces.data.network.CFRemoteDataSource
 import org.onedroid.greedycoder.core.codeforces.data.network.CFRemoteDataSourceImpl
 import org.onedroid.greedycoder.core.codeforces.data.repository.CFRepositoryImpl
 import org.onedroid.greedycoder.core.codeforces.domain.repository.CFRepository
-import org.onedroid.greedycoder.core.codeforces.domain.usecase.SearchUserUseCase
+import org.onedroid.greedycoder.core.codeforces.domain.usecase.FetchCFContestsUseCase
+import org.onedroid.greedycoder.core.codeforces.domain.usecase.SearchCFUserUseCase
 import org.onedroid.greedycoder.core.network.HttpClientFactory
 import org.onedroid.greedycoder.core.utils.AppPreferences
 
@@ -23,7 +24,9 @@ val sharedModule = module {
     viewModelOf(::ProfileViewModel)
     singleOf(::CFRemoteDataSourceImpl).bind<CFRemoteDataSource>()
     singleOf(::CFRepositoryImpl).bind<CFRepository>()
-    singleOf(::SearchUserUseCase)
+
+    singleOf(::SearchCFUserUseCase)
+    singleOf(::FetchCFContestsUseCase)
 
     viewModelOf(::SettingViewModel)
     singleOf(::AppPreferences)

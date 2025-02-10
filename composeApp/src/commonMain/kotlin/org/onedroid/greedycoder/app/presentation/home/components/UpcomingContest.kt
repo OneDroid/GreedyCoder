@@ -35,6 +35,7 @@ import greedycoder.composeapp.generated.resources.ic_notification_add_outlined
 import greedycoder.composeapp.generated.resources.ic_notifications_active
 import greedycoder.composeapp.generated.resources.ic_notifications_add
 import org.jetbrains.compose.resources.painterResource
+import org.onedroid.greedycoder.core.codeforces.domain.entity.CFContest
 
 @Composable
 fun UpcomingContestCardMostRecent() {
@@ -165,7 +166,9 @@ fun TimerDisplay(value: Int, unit: String) {
 }
 
 @Composable
-fun UpComingContestCard() {
+fun UpComingContestCard(
+    cfContest: CFContest
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -207,7 +210,7 @@ fun UpComingContestCard() {
 
             // Title
             Text(
-                text = "Codeforces Round 1003 (Div. 4)",
+                text = cfContest.name,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
@@ -234,7 +237,7 @@ fun UpComingContestCard() {
                             .padding(end = 4.dp)
                     ) {
                         Text(
-                            text = "Type: ICPC",
+                            text = "Type: " + cfContest.type,
                             color = MaterialTheme.colorScheme.onSurface,
                             style = MaterialTheme.typography.labelSmall
                         )
@@ -277,15 +280,17 @@ fun UpComingContestCard() {
 }
 
 @Composable
-fun UpComingContestList() {
+fun ContestList(
+    cfContests: List<CFContest>
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
     ) {
         item {
             UpcomingContestCardMostRecent()
         }
-        items(3) {
-            UpComingContestCard()
+        items(cfContests.size) { index ->
+            UpComingContestCard(cfContests[index])
         }
     }
 }
