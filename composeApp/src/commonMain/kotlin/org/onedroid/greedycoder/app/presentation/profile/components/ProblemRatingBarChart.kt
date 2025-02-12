@@ -1,5 +1,6 @@
 package org.onedroid.greedycoder.app.presentation.profile.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,12 +27,15 @@ fun ProblemRatingBarChart(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ),
-        shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(0.5.dp)
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier.fillMaxWidth().border(
+            1.dp,
+            MaterialTheme.colorScheme.outline.copy(alpha = 0.1f),
+            RoundedCornerShape(12.dp)
+        ),
     ) {
         Column {
             Text(

@@ -139,13 +139,13 @@ private fun UserProfile(
             avatar = cfUser?.avatar ?: ""
         )
         StatsCard(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         ContestRankingLineChart(
             modifier = Modifier.padding(horizontal = 16.dp)
         )
         ProblemRatingBarChart(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
     }
 }
