@@ -13,11 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun StatItem(icon: ImageVector, label: String, value: String) {
+fun StatItem(icon: Painter, label: String, value: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -25,10 +26,10 @@ fun StatItem(icon: ImageVector, label: String, value: String) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = null,
             tint = Color.Yellow,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(20.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
@@ -40,7 +41,7 @@ fun StatItem(icon: ImageVector, label: String, value: String) {
         Text(
             text = value,
             style = MaterialTheme.typography.titleSmall,
-            color = Color(0xFFFFC107)
+            color = Color.Yellow,
         )
     }
 }

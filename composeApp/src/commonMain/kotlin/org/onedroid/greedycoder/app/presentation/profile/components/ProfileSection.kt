@@ -38,13 +38,16 @@ fun ProfileSection(
     avatar: String,
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().padding(top = 4.dp)
-            .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha =  0.1f), RoundedCornerShape(8.dp)),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ),
-        shape = RoundedCornerShape(8.dp),
-        //elevation = CardDefaults.cardElevation(0.5.dp)
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier.fillMaxWidth().padding(top = 4.dp)
+            .border(
+                1.dp,
+                MaterialTheme.colorScheme.outline.copy(alpha = 0.1f),
+                RoundedCornerShape(12.dp)
+            )
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
