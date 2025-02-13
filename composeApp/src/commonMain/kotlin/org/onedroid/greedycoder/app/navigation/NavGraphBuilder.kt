@@ -30,7 +30,10 @@ fun NavGraphBuilder.navGraphBuilder(
 
     composable<Route.Profile> {
         ProfileScreenRoot(
-            innerPadding = innerPadding
+            innerPadding = innerPadding,
+            onSettingClick = {
+                rootNavController.navigate(Route.Settings)
+            }
         )
     }
 

@@ -24,6 +24,7 @@ ktor = "3.0.3"
 koin = "4.0.0"
 
 datastore = "1.1.1"
+datetime = "0.6.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -64,6 +65,8 @@ koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", ver
 
 datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+datetime = {module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
