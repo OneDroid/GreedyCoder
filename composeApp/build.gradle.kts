@@ -56,12 +56,14 @@ kotlin {
             implementation(libs.vico.multiplatform)
             implementation(libs.bundles.ktor)
 
-            api(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.bundles.coil)
 
+            api(libs.koin.core)
             api(libs.datastore.preferences)
             api(libs.datastore)
+
         }
         nativeMain.dependencies {
             implementation(libs.ktor.client.darwin)
