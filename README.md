@@ -18,5 +18,5 @@ This project follows the MVI (Model-View-Intent) design pattern combined with Cl
 </a>
 
 ## Author
-**Tawhid Monowar** - *Computer Science & Engineering Student* <br>
+**Tawhid Monowar** - *Open Source Software Engineer* <br>
 [LinkedIn](https://www.linkedin.com/in/tawhidmonowar) | [Portfolio](https://tawhidmonowar.github.io/profile)  | [GitHub](https://github.com/tawhidmonowar)
