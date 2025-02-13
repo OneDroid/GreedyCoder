@@ -13,7 +13,7 @@ This project follows the MVI (Model-View-Intent) design pattern combined with Cl
 ![Analytics](https://repobeats.axiom.co/api/embed/0f839f0e025bce09c72f6e444bb71a56ce47a8ab.svg "Repobeats analytics image")
 
 ## Contributors
-<a href="https://github.com/tawhidmonowar/WebCapture/graphs/contributors">
+<a href="https://github.com/OneDroid/GreedyCoder/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=OneDroid/GreedyCoder&max=100&columns=20" />
 </a>
 
