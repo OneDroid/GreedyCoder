@@ -28,7 +28,7 @@ fun StatItem(icon: Painter, label: String, value: String) {
         Icon(
             painter = icon,
             contentDescription = null,
-            tint = Color.Yellow,
+            tint = MaterialTheme.colorScheme.tertiary,
             modifier = Modifier.size(20.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
@@ -41,7 +41,7 @@ fun StatItem(icon: Painter, label: String, value: String) {
         Text(
             text = value,
             style = MaterialTheme.typography.titleSmall,
-            color = Color.Yellow,
+            color = MaterialTheme.colorScheme.tertiary,
         )
     }
 }

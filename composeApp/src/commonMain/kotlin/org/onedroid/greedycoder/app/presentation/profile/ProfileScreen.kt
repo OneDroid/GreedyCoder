@@ -27,6 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import greedycoder.composeapp.generated.resources.Res
 import greedycoder.composeapp.generated.resources.error_not_found
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.periodUntil
+import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.onedroid.greedycoder.app.presentation.profile.components.ContestRankingLineChart
@@ -41,6 +46,7 @@ import org.onedroid.greedycoder.core.components.EmbeddedSearchBar
 @Composable
 fun ProfileScreenRoot(
     viewModel: ProfileViewModel = koinViewModel(),
+    onSettingClick: () -> Unit = {},
     innerPadding: PaddingValues
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -68,7 +74,7 @@ fun ProfileScreenRoot(
                 CustomTopAppBar(
                     title = "Profile",
                     onSettingClick = {
-
+                        onSettingClick()
                     },
                     onSearchClick = {
                         viewModel.onAction(ProfileAction.OnSearchActiveClick)
@@ -134,12 +140,23 @@ private fun UserProfile(
     Column(modifier = modifier) {
         ProfileSection(
             modifier = Modifier.padding(horizontal = 16.dp),
-            handel = cfUser?.handle ?: "",
-            rank = cfUser?.rank ?: "",
+            handel = cfUser?.handle ?: "Unknown",
+            rank = cfUser?.rank?.let { "$it (max: ${cfUser.maxRank ?: ""})" } ?: "Unknown",
             avatar = cfUser?.avatar ?: ""
         )
         StatsCard(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.padding(
+                horizontal = 16.dp,
+                vertical = 8.dp
+            ),
+            rating = cfUser?.rating,
+            attended = 0,
+            maxRating = cfUser?.maxRating,
+            solved = 0,
+            friends = cfUser?.friendOfCount,
+            contribution = cfUser?.contribution,
+            registration = cfUser?.registrationTimeSeconds?.let { getLastOnlineStatus(it) },
+            lastSeen = cfUser?.lastOnlineTimeSeconds?.let { getLastOnlineStatus(it) }
         )
         ContestRankingLineChart(
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -147,5 +164,44 @@ private fun UserProfile(
         ProblemRatingBarChart(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
+    }
+}
+
+
+private fun getLastOnlineStatus(
+    lastOnlineTime: Long,
+    isSeconds: Boolean = true,  // Set to false if the timestamp is already in milliseconds.
+    onlineThresholdMinutes: Int = 10
+): String {
+    // Convert the provided timestamp to milliseconds if needed.
+    val lastOnlineMillis = if (isSeconds) lastOnlineTime * 1000 else lastOnlineTime
+    val now = Clock.System.now()
+    val nowMillis = now.toEpochMilliseconds()
+    val difference = nowMillis - lastOnlineMillis
+
+    val onlineThresholdMillis = onlineThresholdMinutes * 60 * 1000L
+
+    return when {
+        // Consider user online if the difference is within the online threshold.
+        difference < onlineThresholdMillis -> "Online"
+        // Display minutes if less than one hour.
+        difference < 60 * 60 * 1000 -> "${difference / (60 * 1000)} minutes ago"
+        // Display hours if less than one day.
+        difference < 24 * 60 * 60 * 1000 -> "${difference / (60 * 60 * 1000)} hours ago"
+        // For dates older than one day, compute a calendar-aware period.
+        else -> {
+            val nowDate = now.toLocalDateTime(TimeZone.currentSystemDefault()).date
+            val lastDate = Instant.fromEpochMilliseconds(lastOnlineMillis)
+                .toLocalDateTime(TimeZone.currentSystemDefault()).date
+
+            // periodUntil calculates full calendar differences.
+            val period = lastDate.periodUntil(nowDate)
+            when {
+                period.years > 0 -> "${period.years} year${if (period.years > 1) "s" else ""} ago"
+                period.months > 0 -> "${period.months} month${if (period.months > 1) "s" else ""} ago"
+                period.days > 0 -> "${period.days} day${if (period.days > 1) "s" else ""} ago"
+                else -> "Today"
+            }
+        }
     }
 }

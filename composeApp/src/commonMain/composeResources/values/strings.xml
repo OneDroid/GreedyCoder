@@ -39,4 +39,6 @@
     <string name="go_back">Go Back</string>
     <string name="right_arrow">Right Arrow</string>
 
+    <string name="unknown">Unknown</string>
+
 </resources>
