@@ -1,6 +1,5 @@
 package org.onedroid.greedycoder.app.presentation.profile.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,14 +20,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import greedycoder.composeapp.generated.resources.Res
-import greedycoder.composeapp.generated.resources.david
+import greedycoder.composeapp.generated.resources.avatar
 import greedycoder.composeapp.generated.resources.ic_more
 import greedycoder.composeapp.generated.resources.setting
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.onedroid.greedycoder.core.components.CustomAsyncImage
 
 @Composable
 fun ProfileSection(
@@ -70,12 +69,10 @@ fun ProfileSection(
                         ),
                     contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(Res.drawable.david),
+                    CustomAsyncImage(
+                        imageUrl = avatar,
                         contentDescription = "Profile",
-                        modifier = Modifier
-                            .size(40.dp)
-                            .clip(RoundedCornerShape(5.dp))
+                        errorImage = painterResource(Res.drawable.avatar)
                     )
                 }
 
